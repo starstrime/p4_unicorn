@@ -1,0 +1,4 @@
+Ivan C -- 03-29-2026
+- added explanation for using Tailwind as FEF
+- changed APIs used from none to Yahoo Finance API via yfinance
+- slightly adjusted wording/phrasing
