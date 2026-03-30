@@ -7,7 +7,6 @@ from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-lobbies = {}
 
 @bp.get('/signup')
 def signup_get():
