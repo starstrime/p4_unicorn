@@ -14,7 +14,7 @@ iStock provides users with an interactive visualization of the development of di
 1. Clone the repository:
 `git clone git@github.com:starstrime/p4_unicorn.git`
 2. Navigate into directory: `cd p4_unicorn`
-3. Create virtual environment: `python3 0m venv venv`
+3. Create virtual environment: `python3 -m venv venv`
 4. Activate virutal environment:
 * macOS/Linux: `. venv/bin/activate`
 * Windows: `venv/Scripts/activate`
