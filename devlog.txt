@@ -18,3 +18,8 @@ emaanA -- 2026-03-30 23:30
 - requirements.txt in place
 - working app in place, served remotely!!! Yay
 - created home.html for redirect
+
+emaanA -- 2026-04-01 11:00
+- using SQL for auth.py as placeholder until mongoDB is up
+- added db.py ^^^ (SQL)
+- created html files, blank for now
