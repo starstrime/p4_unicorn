@@ -23,3 +23,6 @@ emaanA -- 2026-04-01 11:00
 - using SQL for auth.py as placeholder until mongoDB is up
 - added db.py ^^^ (SQL)
 - created html files, blank for now
+
+ivanC -- 2026-04-01 11:00
+- setup cluster through cloud, will try to get working during break
