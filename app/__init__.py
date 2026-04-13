@@ -15,14 +15,6 @@ app.register_blueprint(auth.bp)
 def home():
     return render_template("home.html")
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    return render_template("auth/login.html")
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    return render_template("auth/register.html")
-
 @app.route('/bar_chart', methods=['GET', 'POST'])
 def bar_chart():
     return render_template("bar_chart.html")
