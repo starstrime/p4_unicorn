@@ -7,7 +7,7 @@ jakeL -- 2026-03-30 10:43
 - update readme with project summary and install guide
 - add gitignore
 
-emaanA -- 2026-03-30 11:00 
+emaanA -- 2026-03-30 11:00
 - add __init__.py
 - add auth.py
 
@@ -26,3 +26,7 @@ emaanA -- 2026-04-01 11:00
 
 ivanC -- 2026-04-01 11:00
 - setup cluster through cloud, will try to get working during break
+
+emaanA -- 2026-04-13 10:30
+- added placeholder build_db.py until we have mongoDB database working
+- added headings to html files 
