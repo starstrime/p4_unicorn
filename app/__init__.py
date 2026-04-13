@@ -1,4 +1,4 @@
-# Unicorn 
+# Unicorn
 # Roster: Ivan Chen, Emaan Asif, Jake Liu, Jalen Chen
 # Softdev 2026
 
@@ -11,6 +11,10 @@ app.secret_key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
 import auth
 app.register_blueprint(auth.bp)
 
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template("home.html")
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template("auth/login.html")
@@ -18,10 +22,6 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     return render_template("auth/register.html")
-
-@app.route('/home', methods=['GET', 'POST'])
-def home():
-    return render_template("home.html")
 
 @app.route('/bar_chart', methods=['GET', 'POST'])
 def bar_chart():
@@ -38,4 +38,3 @@ def line_chart():
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
-
