@@ -30,3 +30,7 @@ ivanC -- 2026-04-01 11:00
 emaanA -- 2026-04-13 10:30
 - added placeholder build_db.py until we have mongoDB database working
 - added headings to html files 
+
+jalenC -- 2026-04-20 10:54
+- added temp login and register
+- added navbars to all the other pages
