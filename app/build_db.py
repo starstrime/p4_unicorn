@@ -10,9 +10,6 @@ try:
     database.drop_collection("profiles")
 finally: # always run regardless if dropped
     database.create_collection("profiles")
-    database.profiles.insert_one({"name": "test1"})
-    database.profiles.insert_one({"name": "test2"})
-
 client.close()
 # # PLACEHOLDER UNTIL MONGO WORKS
 # c.executescript("""
