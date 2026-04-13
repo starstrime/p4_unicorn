@@ -11,20 +11,20 @@ app.secret_key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
 import auth
 app.register_blueprint(auth.bp)
 
-@app.route('/', methods=['GET', 'POST'])
-def home():
+@app.get('/')
+def home_get():
     return render_template("home.html")
 
-@app.route('/bar_chart', methods=['GET', 'POST'])
-def bar_chart():
+@app.get('/barChart')
+def barChart_get():
     return render_template("bar_chart.html")
 
-@app.route('/bollinger', methods=['GET', 'POST'])
-def bollinger():
+@app.get('/bollinger')
+def bollinger_get():
     return render_template("bollinger.html")
 
-@app.route('/line_chart', methods=['GET', 'POST'])
-def line_chart():
+@app.get('/lineChart')
+def lineChart_get():
     return render_template("line_chart.html")
 
 if __name__ == '__main__':
