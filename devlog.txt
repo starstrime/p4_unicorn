@@ -30,4 +30,8 @@ ivanC -- 2026-04-01 11:00
 emaanA -- 2026-04-13 11:00
 - added placeholder build_db.py until we have mongoDB database working
 - added headings to html files
-- working on bar_chart.js and bollinger.js, added all js files + headings
+- working on bar_chart.js and bollinger.js 
+
+jalenC -- 2026-04-20 10:54
+- added temp login and register
+- added navbars to all the other pages
