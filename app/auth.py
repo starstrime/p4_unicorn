@@ -11,6 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 uri = "mongodb://Cluster17576:ZFhsTF5SZmZa@ac-cm2kdg3-shard-00-00.b6r6yys.mongodb.net:27017,ac-cm2kdg3-shard-00-01.b6r6yys.mongodb.net:27017,ac-cm2kdg3-shard-00-02.b6r6yys.mongodb.net:27017/?ssl=true&replicaSet=atlas-tl4q5z-shard-0&authSource=admin&appName=Cluster17576"
+# yes i know mongo yells at me for having this public but what is anyone really going to do with this
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client["data"]
 
@@ -18,15 +19,16 @@ db = client["data"]
 def signup_get():
     return render_template('auth/register.html')
 
-@bp.post('/signup')
+@bp.post('/register')
 def signup_post():
     username = request.form.get('username')
     password = request.form.get('password')
-    if len(db.profiles.find({"name":username})) != 0:
+    cursor = db.profiles.find_one({"name":username})
+    if cursor != None:
         flash('Username already exists.', 'error')
-        return redirect(url_for('auth.register_get'))   
+        return redirect(url_for('auth.signup_get'))   
     hashed_password = generate_password_hash(password)
-    insert_query("profiles", {"username": username, "password": hashed_password})
+    db.profiles.insert_one({"name":username, "password":hashed_password})
     flash('Sign up successful! Please log in.', 'success')
     return redirect(url_for('auth.login_get'))
 
@@ -38,8 +40,8 @@ def login_get():
 def login_post():
     username = request.form.get('username')
     password = request.form.get('password')
-    rows = select_query("SELECT * FROM profiles WHERE username=?", [username])
-    if len(rows) != 0 and check_password_hash(rows[0]['password'], password):
+    cursor = db.profiles.find_one({"name":username})
+    if cursor != None and check_password_hash(cursor['password'], password):
         session['username'] = username
         flash(f'Welcome back, {username}!', 'success')
         return redirect(url_for('home_get'))
