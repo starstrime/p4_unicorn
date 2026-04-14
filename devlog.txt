@@ -39,3 +39,6 @@ jalenC -- 2026-04-13 10:54
 
 ivanC -- 2026-04-13 11:06
 - cluster connected, converting sql placeholders to mongo via branch
+
+ivanC -- 2026-04-13 23:47
+- finalized conversion of mongo to sql for auth
