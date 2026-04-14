@@ -1,4 +1,4 @@
-# [project] by Unicorn
+# iStock by Unicorn
  
 ### Roster: 
 - PM: Ivan Chen
