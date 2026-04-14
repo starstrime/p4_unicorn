@@ -11,7 +11,7 @@ try:
 finally: # always run regardless if dropped
     database.create_collection("profiles")
     database.profiles.create_index(["name"], unique=True, sparse=True)
-    database.profiles.create_index(["password"], unique=True, sparse=True)
+    database.profiles.create_index(["password"], sparse=True)
 client.close()
 
 # # PLACEHOLDER UNTIL MONGO WORKS

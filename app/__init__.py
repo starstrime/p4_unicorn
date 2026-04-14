@@ -13,8 +13,8 @@ app.register_blueprint(auth.bp)
 
 @app.get('/')
 def home_get():
-    return ("hi")
-#    return render_template("home.html")
+    # return ("hi")
+   return render_template("home.html")
 
 if __name__ == '__main__':
     app.debug = True
