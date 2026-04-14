@@ -10,7 +10,10 @@ try:
     database.drop_collection("profiles")
 finally: # always run regardless if dropped
     database.create_collection("profiles")
+    database.profiles.create_index(["name"], unique=True, sparse=True)
+    database.profiles.create_index(["password"], unique=True, sparse=True)
 client.close()
+
 # # PLACEHOLDER UNTIL MONGO WORKS
 # c.executescript("""
 #     DROP TABLE IF EXISTS profiles;
