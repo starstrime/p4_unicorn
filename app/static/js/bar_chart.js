@@ -2,6 +2,13 @@
 //  Roster: Ivan Chen, Emaan Asif, Jake Liu, Jalen Chen
 //  SoftDev pd4
 //  2026
+function _1(md){return(
+md`<div style="color: grey; font: 13px/25.5px var(--sans-serif); text-transform: uppercase;"><h1 style="display: none;">Bar Chart Race</h1><a href="https://d3js.org/">D3</a> › <a href="/@d3/gallery">Gallery</a></div>
+
+# Bar Chart Race
+
+This chart animates the value (in $M) of the top global brands from 2000 to 2019. Color indicates sector. See [the explainer](/d/e9e3929cf7c50b45) for more. Data: [Interbrand](https://www.interbrand.com/best-brands/)`
+)}
 
 function _data(FileAttachment){return(
 FileAttachment("category-brands.csv").csv({typed: true})
@@ -270,3 +277,45 @@ function _marginBottom(){return(
 function _marginLeft(){return(
 0
 )}
+
+export default function define(runtime, observer) {
+  const main = runtime.module();
+  function toString() { return this.url; }
+  const fileAttachments = new Map([
+    ["category-brands.csv", {url: new URL("./files/aec3792837253d4c6168f9bbecdf495140a5f9bb1cdb12c7c8113cec26332634a71ad29b446a1e8236e0a45732ea5d0b4e86d9d1568ff5791412f093ec06f4f1.csv", import.meta.url), mimeType: "text/csv", toString}]
+  ]);
+  main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
+  main.variable(observer()).define(["md"], _1);
+  main.variable(observer("data")).define("data", ["FileAttachment"], _data);
+  main.variable(observer("viewof replay")).define("viewof replay", ["html"], _replay);
+  main.variable(observer("replay")).define("replay", ["Generators", "viewof replay"], (G, _) => G.input(_));
+  main.variable(observer("chart")).define("chart", ["replay","d3","width","height","bars","axis","labels","ticker","keyframes","duration","x","invalidation"], _chart);
+  main.variable(observer("duration")).define("duration", _duration);
+  main.variable(observer("n")).define("n", _n);
+  main.variable(observer("names")).define("names", ["data"], _names);
+  main.variable(observer("datevalues")).define("datevalues", ["d3","data"], _datevalues);
+  main.variable(observer("rank")).define("rank", ["names","d3","n"], _rank);
+  main.variable(observer("k")).define("k", _k);
+  main.variable(observer("keyframes")).define("keyframes", ["d3","datevalues","k","rank"], _keyframes);
+  main.variable(observer("nameframes")).define("nameframes", ["d3","keyframes"], _nameframes);
+  main.variable(observer("prev")).define("prev", ["nameframes","d3"], _prev);
+  main.variable(observer("next")).define("next", ["nameframes","d3"], _next);
+  main.variable(observer("bars")).define("bars", ["n","color","y","x","prev","next"], _bars);
+  main.variable(observer("labels")).define("labels", ["n","x","prev","y","next","textTween"], _labels);
+  main.variable(observer("textTween")).define("textTween", ["d3","formatNumber"], _textTween);
+  main.variable(observer("formatNumber")).define("formatNumber", ["d3"], _formatNumber);
+  main.variable(observer("tickFormat")).define("tickFormat", _tickFormat);
+  main.variable(observer("axis")).define("axis", ["marginTop","d3","x","width","tickFormat","barSize","n","y"], _axis);
+  main.variable(observer("ticker")).define("ticker", ["barSize","width","marginTop","n","formatDate","keyframes"], _ticker);
+  main.variable(observer("formatDate")).define("formatDate", ["d3"], _formatDate);
+  main.variable(observer("color")).define("color", ["d3","data"], _color);
+  main.variable(observer("x")).define("x", ["d3","marginLeft","width","marginRight"], _x);
+  main.variable(observer("y")).define("y", ["d3","n","marginTop","barSize"], _y);
+  main.variable(observer("height")).define("height", ["marginTop","barSize","n","marginBottom"], _height);
+  main.variable(observer("barSize")).define("barSize", _barSize);
+  main.variable(observer("marginTop")).define("marginTop", _marginTop);
+  main.variable(observer("marginRight")).define("marginRight", _marginRight);
+  main.variable(observer("marginBottom")).define("marginBottom", _marginBottom);
+  main.variable(observer("marginLeft")).define("marginLeft", _marginLeft);
+  return main;
+}

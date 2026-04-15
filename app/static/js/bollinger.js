@@ -2,8 +2,24 @@
 //  Roster: Ivan Chen, Emaan Asif, Jake Liu, Jalen Chen
 //  SoftDev pd4
 //  2026
+function _1(md){return(
+md`<div style="color: grey; font: 13px/25.5px var(--sans-serif); text-transform: uppercase;"><h1 style="display: none;">Bollinger bands</h1><a href="https://d3js.org/">D3</a> › <a href="/@d3/gallery">Gallery</a></div>
 
-chart = {
+# Bollinger bands
+
+This time series [line chart](/@d3/line-chart/2) includes [Bollinger bands](https://en.wikipedia.org/wiki/Bollinger_Bands): simple, lagging [moving averages](https://en.wikipedia.org/wiki/Moving_average) for characterizing volatility. Data: [Yahoo Finance](https://finance.yahoo.com/lookup)`
+)}
+
+function _N(Inputs){return(
+Inputs.range([2, 100], {value: 20, step: 1, label: "Periods (N)"})
+)}
+
+function _K(Inputs){return(
+Inputs.range([0, 10], {value: 2, step: 0.1, label: "Deviations (K)"})
+)}
+
+function _chart(aapl,d3,bollinger,N,K)
+{
   const width = 928;
   const height = 600;
   const marginTop = 10;
@@ -25,7 +41,7 @@ chart = {
       .defined((y, i) => !isNaN(aapl[i].Date) && !isNaN(y))
       .x((d, i) => x(aapl[i].Date))
       .y(y);
-
+  
   const svg = d3.create("svg")
       .attr("width", width)
       .attr("height", height)
@@ -48,6 +64,7 @@ chart = {
           .attr("x", 3)
           .attr("text-anchor", "start")
           .attr("font-weight", "bold")
+          .text("↑ Daily close ($)"));
 
   svg.append("g")
       .attr("fill", "none")
@@ -55,10 +72,58 @@ chart = {
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
     .selectAll()
-  //  .data([values, ...bollinger(values, N, [-K, 0, +K])])
+    .data([values, ...bollinger(values, N, [-K, 0, +K])])
     .join("path")
       .attr("stroke", (d, i) => ["#aaa", "green", "blue", "red"][i])
       .attr("d", line);
 
   return svg.node();
+}
+
+
+function _bollinger(){return(
+function bollinger(values, N, K) {
+  let i = 0;
+  let sum = 0;
+  let sum2 = 0;
+  const bands = K.map(() => new Float64Array(values.length).fill(NaN));
+  for (let n = Math.min(N - 1, values.length); i < n; ++i) {
+    const value = values[i];
+    sum += value, sum2 += value ** 2;
+  }
+  for (let n = values.length, m = bands.length; i < n; ++i) {
+    const value = values[i];
+    sum += value, sum2 += value ** 2;
+    const mean = sum / N;
+    const deviation = Math.sqrt((sum2 - sum ** 2 / N) / (N - 1));
+    for (let j = 0; j < K.length; ++j) {
+      bands[j][i] = mean + deviation * K[j];
+    }
+    const value0 = values[i - N + 1];
+    sum -= value0, sum2 -= value0 ** 2;
+  }
+  return bands;
+}
+)}
+
+function _6(md){return(
+md`With [Observable Plot](https://observablehq.com/plot)’s concise API, you can create a similar chart with the [bollinger](/plot/marks/bollinger) mark.`
+)}
+
+function _7(Plot,aapl){return(
+Plot.bollingerY(aapl, {x: "Date", y: "Close"}).plot()
+)}
+
+export default function define(runtime, observer) {
+  const main = runtime.module();
+  main.variable(observer()).define(["md"], _1);
+  main.variable(observer("viewof N")).define("viewof N", ["Inputs"], _N);
+  main.variable(observer("N")).define("N", ["Generators", "viewof N"], (G, _) => G.input(_));
+  main.variable(observer("viewof K")).define("viewof K", ["Inputs"], _K);
+  main.variable(observer("K")).define("K", ["Generators", "viewof K"], (G, _) => G.input(_));
+  main.variable(observer("chart")).define("chart", ["aapl","d3","bollinger","N","K"], _chart);
+  main.variable(observer("bollinger")).define("bollinger", _bollinger);
+  main.variable(observer()).define(["md"], _6);
+  main.variable(observer()).define(["Plot","aapl"], _7);
+  return main;
 }
