@@ -45,3 +45,12 @@ ivanC -- 2026-04-13 23:47
 
 jakeL -- 2026-04-14 20:17
 - add templates to app js files
+
+emaanA -- 2026-04-15 11:00
+- troubleshooting remote server 
+
+ivanC -- 2026-04-15 11:00 
+- troubleshooting remote server 
+
+jakeL -- 2026-04-15 11:00
+- working on javascript
