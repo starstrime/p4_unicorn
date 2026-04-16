@@ -2,8 +2,6 @@
 //  Roster: Ivan Chen, Emaan Asif, Jake Liu, Jalen Chen
 //  SoftDev pd4
 //  2026
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-
 function _1(basis,aapl,md){return(
 md`<div style="color: grey; font: 13px/25.5px var(--sans-serif); text-transform: uppercase;"><h1 style="display: none;">Line chart, percent change</h1><a href="https://d3js.org/">D3</a> › <a href="/@d3/gallery">Gallery</a></div>
 
