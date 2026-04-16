@@ -35,7 +35,7 @@ def get_data():
     tickers = ['AAPL', 'NVDA', 'TSLA', 'MSFT', 'AMZN', 'META']
     rows = []
     for ticker in tickers:
-        hist = yf.Ticker(ticker).history(period='10y', interval='3mo')
+        hist = yf.Ticker(ticker).history(period='2y', interval='3mo')
         shares_outstanding = yf.Ticker(ticker).info['sharesOutstanding']
         hist['Market_cap'] = hist['Close'] * shares_outstanding
         for date, row in hist.iterrows():
