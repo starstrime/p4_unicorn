@@ -43,14 +43,18 @@ ivanC -- 2026-04-13 11:06
 ivanC -- 2026-04-13 23:47
 - finalized conversion of mongo to sql for auth
 
+jalenC -- 2026-04-14 10:28
+- fixed navbar href links
+- changed debug to False
+
 jakeL -- 2026-04-14 20:17
 - add templates to app js files
 
 emaanA -- 2026-04-15 11:00
-- troubleshooting remote server 
+- troubleshooting remote server
 
-ivanC -- 2026-04-15 11:00 
-- troubleshooting remote server 
+ivanC -- 2026-04-15 11:00
+- troubleshooting remote server
 
 jakeL -- 2026-04-15 11:00
 - working on javascript
