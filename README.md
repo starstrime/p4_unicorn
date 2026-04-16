@@ -9,7 +9,7 @@
 ### Description:
 iStock provides users with an interactive visualization of the development of different securities over time. It offers a dynamic bar chart race feature through which users select stocks for a fun way to see which stock will win at the end of the chosen timeframe. It also offers a simple comparison feature to give the user a breakdown, including Open, High, Low, Close, and Volume (OHLCV) data, of selected stocks.
 
-#### Visit our live site at [45.55.142.125](45.55.142.125)
+#### Visit our live site at [45.55.142.125](http://45.55.142.125)
 
 ### Install Guide:
 1. Clone the repository:
