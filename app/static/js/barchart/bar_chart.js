@@ -2,7 +2,6 @@
 //  Roster: Ivan Chen, Emaan Asif, Jake Liu, Jalen Chen
 //  SoftDev pd4
 //  2026
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 function _1(md){return(
 md`<div style="color: grey; font: 13px/25.5px var(--sans-serif); text-transform: uppercase;"><h1 style="display: none;">Bar Chart Race</h1><a href="https://d3js.org/">D3</a> › <a href="/@d3/gallery">Gallery</a></div>
 
@@ -11,9 +10,15 @@ md`<div style="color: grey; font: 13px/25.5px var(--sans-serif); text-transform:
 This chart animates the value (in $M) of the top global brands from 2000 to 2019. Color indicates sector. See [the explainer](/d/e9e3929cf7c50b45) for more. Data: [Interbrand](https://www.interbrand.com/best-brands/)`
 )}
 
-function _data(FileAttachment){return(
-FileAttachment("category-brands.csv").csv({typed: true})
-)}
+function _data(){
+  return fetch("http://localhost:5000/data")
+  .then(r => r.json())
+  .then(data => data.map(d => ({
+    ...d,
+    date: new Date(d.date),
+    value: +d.value
+  })));
+}
 
 function _replay(html){return(
 html`<button>Replay`
@@ -185,7 +190,7 @@ function textTween(a, b) {
 )}
 
 function _formatNumber(d3){return(
-d3.format(",d")
+d3.format("$,.2f")
 )}
 
 function _tickFormat(){return(
@@ -229,7 +234,7 @@ function ticker(svg) {
 )}
 
 function _formatDate(d3){return(
-d3.utcFormat("%Y")
+d3.utcFormat("%b %Y")
 )}
 
 function _color(d3,data)
@@ -281,11 +286,7 @@ function _marginLeft(){return(
 
 export default function define(runtime, observer) {
   const main = runtime.module();
-  function toString() { return this.url; }
-  const fileAttachments = new Map([
-    ["category-brands.csv", {url: new URL("./files/aec3792837253d4c6168f9bbecdf495140a5f9bb1cdb12c7c8113cec26332634a71ad29b446a1e8236e0a45732ea5d0b4e86d9d1568ff5791412f093ec06f4f1.csv", import.meta.url), mimeType: "text/csv", toString}]
-  ]);
-  main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
+
   main.variable(observer()).define(["md"], _1);
   main.variable(observer("data")).define("data", ["FileAttachment"], _data);
   main.variable(observer("viewof replay")).define("viewof replay", ["html"], _replay);

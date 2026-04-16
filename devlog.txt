@@ -54,3 +54,7 @@ ivanC -- 2026-04-15 11:00
 
 jakeL -- 2026-04-15 11:00
 - working on javascript
+
+jakeL -- 2026-04-15 21:43
+- bar chart race is functional visuall
+- still need to allow for custom user input to choose stocks
