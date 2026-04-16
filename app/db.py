@@ -1,10 +1,8 @@
-#PLACEHOLDER FILE UNTIL WE HAVE MONGODB UP
+from pymongo.mongo_client import MongoClient
 
-import sqlite3
-
-DB_FILE="data.db"
-
-db = sqlite3.connect(DB_FILE, check_same_thread=False)
+uri = "mongodb://Cluster17576:ZFhsTF5SZmZa@ac-cm2kdg3-shard-00-00.b6r6yys.mongodb.net:27017,ac-cm2kdg3-shard-00-01.b6r6yys.mongodb.net:27017,ac-cm2kdg3-shard-00-02.b6r6yys.mongodb.net:27017/?ssl=true&replicaSet=atlas-tl4q5z-shard-0&authSource=admin&appName=Cluster17576"
+# Create a new client and connect to the server
+client = MongoClient(uri)
 
 def select_query(query_string, parameters=()):
     c = db.cursor()
@@ -27,7 +25,7 @@ def insert_query(table, data):
     row = c.fetchall()
     output = dict()
     for col in range(len(row[0])):
-        output.update({c.description[col][0]: row[0][col]}) 
+        output.update({c.description[col][0]: row[0][col]})
     c.close()
     db.commit()
     return output
