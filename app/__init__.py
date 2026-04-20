@@ -14,21 +14,26 @@ CORS(app)
 import auth
 app.register_blueprint(auth.bp)
 
+def check_logged_in():
+    if session['username']:
+        return True
+    return False
+
 @app.get('/')
 def home_get():
-    return render_template("home.html")
+    return render_template("home.html", logged_in=check_logged_in())
 
 @app.get('/barChart')
 def barChart_get():
-    return render_template("bar_chart.html")
+    return render_template("bar_chart.html", logged_in=check_logged_in())
 
 @app.get('/bollinger')
 def bollinger_get():
-    return render_template("bollinger.html")
+    return render_template("bollinger.html", logged_in=check_logged_in())
 
 @app.get('/lineChart')
 def lineChart_get():
-    return render_template("line_chart.html")
+    return render_template("line_chart.html", logged_in=check_logged_in())
 
 @app.route('/data')
 def get_data():

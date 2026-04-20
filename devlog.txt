@@ -62,3 +62,7 @@ jakeL -- 2026-04-15 11:00
 jakeL -- 2026-04-15 21:43
 - bar chart race is functional visuall
 - still need to allow for custom user input to choose stocks
+
+jalenC -- 2026-04-20 11:00
+- added jinja to change login button to logout if logged in
+- changed __init__.py to check if logged in
