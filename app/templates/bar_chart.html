@@ -68,7 +68,18 @@
           </div>
         </div>
       </nav>
+      {% if bar_stocks_chosen %}
       <div id="replay"></div>
       <div id="chart"></div>
+      {% else %}
+      <form>
+        <p>Choose 5 stocks:</p>
+        <input type="text" id="stock1" name="stock1"><br>
+        <input type="text" id="stock2" name="stock2"><br>
+        <input type="text" id="stock3" name="stock3"><br>
+        <input type="text" id="stock4" name="stock4"><br>
+        <input type="text" id="stock5" name="stock5"><br>
+      </form>
+      {% endif %}
     </body>
 </html>
