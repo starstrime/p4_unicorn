@@ -4,7 +4,6 @@
 
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from pymongo.mongo_client import MongoClient
-from db import select_query, insert_query #using SQL until mongoDB fleshed out
 from werkzeug.security import generate_password_hash, check_password_hash
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
