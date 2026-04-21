@@ -66,3 +66,6 @@ jakeL -- 2026-04-15 21:43
 jalenC -- 2026-04-20 11:00
 - added jinja to change login button to logout if logged in
 - changed __init__.py to check if logged in
+
+jakeL -- 2026-4-20 23:35
+- finished all core features (bollinger, bar chart, and line chart)

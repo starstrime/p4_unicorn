@@ -15,9 +15,7 @@ import auth
 app.register_blueprint(auth.bp)
 
 def check_logged_in():
-    if session['username']:
-        return True
-    return False
+    return 'username' in session
 
 @app.get('/')
 def home_get():
@@ -35,24 +33,49 @@ def bollinger_get():
 def lineChart_get():
     return render_template("line_chart.html", logged_in=check_logged_in())
 
-@app.route('/data')
-def get_data():
-    tickers = ['AAPL', 'NVDA', 'TSLA', 'MSFT', 'AMZN', 'META']
-    rows = []
+@app.route("/bar_chart_data")
+def bar_chart_data():
+    tickers = request.args.get("tickers", "AAPL,MSFT,GOOGL,AMZN,META,TSLA,NVDA,JPM,V,WMT").split(",")
+    start   = request.args.get("start", "2015-01-01")
+    end     = request.args.get("end",   "2024-01-01")
+
+    records = []
     for ticker in tickers:
-        hist = yf.Ticker(ticker).history(period='2y', interval='3mo')
-        shares_outstanding = yf.Ticker(ticker).info['sharesOutstanding']
-        hist['Market_cap'] = hist['Close'] * shares_outstanding
+        tk = yf.Ticker(ticker)
+
+        # shares outstanding is a scalar
+        shares = tk.info.get("sharesOutstanding", None)
+        if shares is None:
+            continue
+
+        # quarterly price history at 3mo interval
+        hist = tk.history(start=start, end=end, interval="3mo")
+        if hist.empty:
+            continue
+
         for date, row in hist.iterrows():
-            rows.append({
-                'date': date.strftime('%Y-%m-%d'),
-                'name': ticker,
-                'category': 'Technology',
-                'value': round(row['Market_cap'], 2)
+            market_cap = row["Close"] * shares / 1e9   # in $B
+            records.append({
+                "date":  date.strftime("%Y-%m-%d"),
+                "name":  ticker,
+                "value": round(market_cap, 2)
             })
 
-    rows.sort(key=lambda x: x['date'])
-    return jsonify(rows)
+    return jsonify(records)
+
+@app.route("/stock_data")
+def get_stock():
+    ticker = request.args.get("ticker", "AAPL")
+    start  = request.args.get("start",  "2020-01-01")
+    end    = request.args.get("end",    "2024-01-01")
+
+    df = yf.download(ticker, start=start, end=end)
+    df.columns = df.columns.get_level_values(0)
+    df = df.reset_index()[["Date", "Close"]]
+    df["Date"] = df["Date"].dt.strftime("%Y-%m-%d")
+    df["Close"] = df["Close"].astype(float)
+
+    return jsonify(df.to_dict(orient="records"))
 
 if __name__ == '__main__':
     app.debug = False

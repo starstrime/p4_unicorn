@@ -10,8 +10,9 @@
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+      <script src="static/js/bar_chart.js"defer></script>
     </head>
-    <script type="module" src="static/js/barchart/main.js"></script>
     <body class="h-full text-white">
       {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -68,18 +69,13 @@
           </div>
         </div>
       </nav>
-      {% if bar_stocks_chosen %}
-      <div id="replay"></div>
+      <div>
+        <input  id="tickers" value="AAPL,MSFT,GOOGL,AMZN" style="width:400px" />
+        <input  id="start"   value="2023-01-01" type="date" />
+        <input  id="end"     value="2024-01-01" type="date" />
+        <button onclick="loadChart()">Load</button>
+      </div>
+      <div id="replay-btn"></div>
       <div id="chart"></div>
-      {% else %}
-      <form>
-        <p>Choose 5 stocks:</p>
-        <input type="text" id="stock1" name="stock1"><br>
-        <input type="text" id="stock2" name="stock2"><br>
-        <input type="text" id="stock3" name="stock3"><br>
-        <input type="text" id="stock4" name="stock4"><br>
-        <input type="text" id="stock5" name="stock5"><br>
-      </form>
-      {% endif %}
     </body>
 </html>

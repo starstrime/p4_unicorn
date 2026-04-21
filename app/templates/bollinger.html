@@ -9,9 +9,10 @@
 <html class="h-full bg-gray-900">
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      <script src="static/js/bollinger.js" defer></script>
     </head>
-    <script type="module" src="static/js/bollinger/main.js"></script>
     <body class="h-full text-white">
       {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -68,6 +69,12 @@
           </div>
         </div>
       </nav>
+      <div>
+        <input id="ticker" value="AAPL" placeholder="Ticker" />
+        <input id="start"  value="2023-01-01" type="date" />
+        <input id="end"    value="2024-01-01" type="date" />
+        <button onclick="loadChart()">Load</button>
+      </div>
       <div id="chart"></div>
     </body>
 </html>
