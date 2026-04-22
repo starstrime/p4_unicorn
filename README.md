@@ -11,6 +11,12 @@ iStock provides users with an interactive visualization of the development of di
 
 #### Visit our live site at [45.55.142.125](http://45.55.142.125)
 
+### FEATURE SPOTLIGHT
+* Interact our [Bar Chart](http://45.55.142.125/barChart), where your can adjust the stock symbols and time period to compare and view their market caps. The chart scales as it runs over the chosen interval.
+
+### KNOWN BUGS/ISSUES
+* Our Bar Chart runs in intervals of three, so if you chose a time period not divisible by three, it will stop a bit earlier. i.e., If your start date is 01/01/2023 and end date is 01/01/2024, a span of eleven months, it will stop nine months after the start date, in Oct 2023 (labeled at the bottom right of the chart) 
+
 ### Install Guide:
 1. Clone the repository:
 `git clone git@github.com:starstrime/p4_unicorn.git`
