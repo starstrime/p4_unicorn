@@ -70,10 +70,11 @@
         </div>
       </nav>
       <div>
+        <a>Enter stock symbols here, separated with ","</a><br>
         <input  id="tickers" value="AAPL,MSFT,GOOGL,AMZN" style="width:400px" />
-        <input  id="start"   value="2023-01-01" type="date" />
-        <input  id="end"     value="2024-01-01" type="date" />
-        <button onclick="loadChart()">Load</button>
+        <a>Start Date: </a><input  id="start"   value="2023-01-01" type="date" />
+        <a>End Date: </a><input  id="end"     value="2024-01-01" type="date" />
+        <button onclick="loadChart()" class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium hover:bg-green-800 transition-transform">Reload Stocks</button>
       </div>
       <div id="replay-btn"></div>
       <div id="chart"></div>

@@ -70,10 +70,13 @@
         </div>
       </nav>
       <div>
+        <a>Enter a stock symbol to show here.</a><br>
         <input id="ticker" value="AAPL" placeholder="Ticker" />
+        <a>Start Date: </a>
         <input id="start"  value="2023-01-01" type="date" />
+        <a>End Date: </a>
         <input id="end"    value="2024-01-01" type="date" />
-        <button onclick="loadChart()">Load</button>
+        <button onclick="loadChart()" class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium hover:bg-green-800 transition-transform">Reload Stock</button>
       </div>
       <div id="chart"></div>
     </body>
