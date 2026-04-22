@@ -72,3 +72,6 @@ jakeL -- 2026-4-20 23:35
 
 emaanA -- 2026-04-21 21:30
 - finishing js and html touches
+
+ivanC -- 2026-04-21 22:34
+- added descriptions to webpages and polished up details
