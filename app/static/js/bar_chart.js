@@ -148,7 +148,7 @@ function axis(svg, { x, y }) {
   return (_, transition) => {
     g.transition(transition).call(axisFn);
     g.select(".tick:first-of-type text").remove();
-    g.selectAll(".tick:not(:first-of-type) line").attr("stroke", "dimgray");
+    g.selectAll(".tick:not(:first-of-type) line").attr("stroke", "#d595959");
     g.select(".domain").remove();
   };
 }
@@ -161,6 +161,7 @@ function ticker(svg, { keyframes }) {
       .attr("x", width - 6)
       .attr("y", marginTop + barSize * (n - 0.45))
       .attr("dy", "0.32em")
+      .attr("fill", "white")
       .text(formatDate(keyframes[0][0]));
 
   return ([date], transition) => {

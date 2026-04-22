@@ -69,3 +69,6 @@ jalenC -- 2026-04-20 11:00
 
 jakeL -- 2026-4-20 23:35
 - finished all core features (bollinger, bar chart, and line chart)
+
+emaanA -- 2026-04-21 21:30
+- finishing js and html touches
