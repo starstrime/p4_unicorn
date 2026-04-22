@@ -48,26 +48,26 @@
               </div>
             </div>
             {% if logged_in %}
-                <div class="hidden sm:flex items-center ml-auto">
-                  <form action="/auth/login" method="POST">
-                    <button type="submit" class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700 transition-transform">Logout</button>
-                  </form>
-                </div>
-            {% else %}
-                <div class="hidden sm:flex items-center ml-auto">
-                  <form action="/auth/login" method="POST">
-                    <button type="submit" class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700 transition-transform">Login</button>
-                  </form>
-                </div>
-            {% endif %}
+  <form action="/auth/logout" method="POST" class="hidden sm:flex ml-auto">
+    <button class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700">
+      Logout
+    </button>
+  </form>
+{% else %}
+  <div class="hidden sm:flex items-center ml-auto">
+    <a href="/auth/login"
+       class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700">
+       Login
+    </a>
+  </div>
+{% endif %}
           </div>
         </div>
       </nav>
       <div class="mx-auto max-w-4xl px-6 py-16 text-center">
-  <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+  <h1 class="text-4xl font-bold tracking-tight text-white sm:text-3xl">
     Welcome to iStock
   </h1>
-d
   <p class="mt-6 text-lg text-gray-300 leading-relaxed">
     iStock provides users with an interactive visualization of the development of different securities over time.
     It offers a dynamic bar chart race feature, allowing users to select stocks and watch in an engaging way which stock performs best over a chosen timeframe.
@@ -76,28 +76,16 @@ d
     giving users a clear and informative view of stock performance.
   </p>
 
-    <h3 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-    Bar Chart Race
-  </h3>
-
   <p class="mt-6 text-lg text-gray-300 leading-relaxed">
-    The Bar Chart race feature shows the market cap of stocks during your selected time period across a scaled graph.
+    Bar Chart Race: The Bar Chart race feature shows the market cap of stocks during your selected time period across a scaled graph.
   </p>
 
-  <h3 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-    Bollinger Bands
-  </h3>
-
   <p class="mt-6 text-lg text-gray-300 leading-relaxed">
-    This feature is a line chart with bollinger bands with an adjustable period window and standard deviation to compare stock trends
+    Bollinger Bands: This feauture is a line chart with bollinger bands with an adjustable period window and standard deviation to compare stock trends
   </p>
 
-  <h3 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-    Line Chart
-  </h3>
-
   <p class="mt-6 text-lg text-gray-300 leading-relaxed">
-    This feature shows stock performance through a percent change line chart graph with a logarithmic y-axis. 
+    Line Chart: This feature shows stock performance through a percent change line chart graph with a logarithmic y-axis. 
     You can adjust the slider to compare performance over time.  
   </p>
 </div>

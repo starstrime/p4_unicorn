@@ -38,17 +38,17 @@ def login_get():
 def login_post():
     username = request.form.get('username')
     password = request.form.get('password')
-    cursor = db.profiles.find_one({"name":username})
-    if cursor != None and check_password_hash(cursor['password'], password):
+    user = db.profiles.find_one({"name": username})
+    if user is not None and check_password_hash(user['password'], password):
         session['username'] = username
         flash(f'Welcome back, {username}!', 'success')
         return redirect(url_for('home_get'))
-    else:
-        flash('Invalid username or password.', 'error')
-        return redirect(url_for('auth.login_get'))
 
-@bp.get('/logout')
-def logout_get():
+    flash("Invalid username or password", "error")
+    return redirect(url_for('auth.login_get'))
+
+@bp.post('/logout')
+def logout_post():
     session.pop('username', None)
     flash('You have been logged out.', 'info')
     return redirect(url_for('auth.login_get'))

@@ -148,7 +148,7 @@ function axis(svg, { x, y }) {
   return (_, transition) => {
     g.transition(transition).call(axisFn);
     g.select(".tick:first-of-type text").remove();
-    g.selectAll(".tick:not(:first-of-type) line").attr("stroke", "#d595959");
+    g.selectAll(".tick:not(:first-of-type) line").attr("stroke", "dimgray");
     g.select(".domain").remove();
   };
 }
