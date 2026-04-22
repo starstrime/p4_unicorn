@@ -48,18 +48,19 @@
               </div>
             </div>
             {% if logged_in %}
-                <div class="hidden sm:flex items-center ml-auto">
-                  <form action="/auth/login" method="POST">
-                    <button type="submit" class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700 transition-transform">Logout</button>
-                  </form>
-                </div>
-            {% else %}
-                <div class="hidden sm:flex items-center ml-auto">
-                  <form action="/auth/login" method="POST">
-                    <button type="submit" class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700 transition-transform">Login</button>
-                  </form>
-                </div>
-            {% endif %}
+  <form action="/auth/logout" method="POST" class="hidden sm:flex ml-auto">
+    <button class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700">
+      Logout
+    </button>
+  </form>
+{% else %}
+  <div class="hidden sm:flex items-center ml-auto">
+    <a href="/auth/login"
+       class="rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700">
+       Login
+    </a>
+  </div>
+{% endif %}
           </div>
         </div>
       </nav>
