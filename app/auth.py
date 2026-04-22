@@ -47,8 +47,8 @@ def login_post():
     flash("Invalid username or password", "error")
     return redirect(url_for('auth.login_get'))
 
-@bp.get('/logout')
-def logout_get():
+@bp.post('/logout')
+def logout_post():
     session.pop('username', None)
     flash('You have been logged out.', 'info')
     return redirect(url_for('auth.login_get'))
