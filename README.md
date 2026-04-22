@@ -28,11 +28,10 @@ iStock provides users with an interactive visualization of the development of di
 5. Install dependencies:
 `pip install -r requirements.txt`
 
-#### Prerequisites
-
 ### Launch Codes:
 To serve the app locally, navigate into the `p4_unicorn` directory and run:
-`flask run`
+* `cd app`
+* `python3 __init__.py`
 
-To serve the app remotely, 
+To serve the app remotely, navigate to our live site [45.55.142.125](http://45.55.142.125)
 
